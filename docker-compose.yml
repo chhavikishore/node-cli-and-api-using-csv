@@ -1,0 +1,19 @@
+version: "3.9"
+services: 
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - postgres
+    environment: 
+      DATABASE_URL: postgres://user:password@postgres:5432/eventsDb
+      PORT: 3000
+  postgres:
+    image: postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: eventsDb
